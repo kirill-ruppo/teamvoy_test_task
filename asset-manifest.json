@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/teamvoy_test_task/static/css/main.3d1c176a.css",
-    "main.js": "/teamvoy_test_task/static/js/main.47321153.js",
+    "main.css": "/teamvoy_test_task/static/css/main.c1961084.css",
+    "main.js": "/teamvoy_test_task/static/js/main.c99d4e1b.js",
     "static/js/787.676e7b5b.chunk.js": "/teamvoy_test_task/static/js/787.676e7b5b.chunk.js",
     "index.html": "/teamvoy_test_task/index.html",
-    "main.3d1c176a.css.map": "/teamvoy_test_task/static/css/main.3d1c176a.css.map",
-    "main.47321153.js.map": "/teamvoy_test_task/static/js/main.47321153.js.map",
+    "main.c1961084.css.map": "/teamvoy_test_task/static/css/main.c1961084.css.map",
+    "main.c99d4e1b.js.map": "/teamvoy_test_task/static/js/main.c99d4e1b.js.map",
     "787.676e7b5b.chunk.js.map": "/teamvoy_test_task/static/js/787.676e7b5b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d1c176a.css",
-    "static/js/main.47321153.js"
+    "static/css/main.c1961084.css",
+    "static/js/main.c99d4e1b.js"
   ]
 }
