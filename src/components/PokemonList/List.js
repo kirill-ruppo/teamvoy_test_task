@@ -39,6 +39,12 @@ export default function List() {
     setOffset((prevOffset) => prevOffset + 12);
     fetchPokemon();
   };
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', 
+    });
+  };
   return (
     <div className="w-full h-full flex sm:flex-row flex-col-reverse items-center sm:items-start">
       <div className="lg:w-3/5 sm:w-1/2 w-[90%]">
@@ -50,6 +56,7 @@ export default function List() {
                 _id={pokemon.id}
                 {...pokemon}
                 onClick={() => handlePokemonClick(pokemon.id)}
+                onScrollToTop={handleScrollToTop} 
               />
             ))}
         </div>
