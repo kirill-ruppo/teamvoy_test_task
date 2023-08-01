@@ -6,12 +6,14 @@ export default function List() {
   const [pokemonList, setPokemonList] = useState([]);
   const [activePokemon, setActivePokemon] = useState(null);
   const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
     fetchPokemon();
   }, [offset]);
 
   const fetchPokemon = () => {
+    setLoading(true); 
     fetch(`https://pokeapi.co/api/v2/pokemon/?limit=12&offset=${offset}`)
       .then((res) => res.json())
       .then((pokemons) => {
@@ -27,24 +29,31 @@ export default function List() {
                 })),
               ]
         );
+        setLoading(false); 
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setLoading(false); 
+      });
   };
-
+  
   const handlePokemonClick = (id) => {
     setActivePokemon(id);
   };
 
   const handleLoadMore = () => {
-    setOffset((prevOffset) => prevOffset + 12);
-    fetchPokemon();
+    if (!loading) { 
+      setOffset((prevOffset) => prevOffset + 12);
+    }
   };
+
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth', 
     });
   };
+
   return (
     <div className="w-full h-full flex sm:flex-row flex-col-reverse items-center sm:items-start">
       <div className="lg:w-3/5 sm:w-1/2 w-[90%]">
@@ -52,12 +61,12 @@ export default function List() {
           {pokemonList.length > 0 &&
             pokemonList.map((pokemon) => (
               <PokemonListCard
-                key={pokemon}
+                key={pokemon.id}
                 _id={pokemon.id}
-                {...pokemon}
+                name={pokemon.name}
                 onClick={() => handlePokemonClick(pokemon.id)}
-                onScrollToTop={handleScrollToTop}
-                active={pokemon.id === activePokemon} 
+                onScrollToTop={handleScrollToTop} 
+                active={pokemon.id === activePokemon}
               />
             ))}
         </div>
@@ -65,7 +74,7 @@ export default function List() {
           className="w-full bg-red h-14 text-black text-2xl mt-3 rounded-xl"
           onClick={handleLoadMore}
         >
-          Load More
+          {loading ? 'Loading...' : 'Load More'}
         </button>
       </div>
 
@@ -75,4 +84,3 @@ export default function List() {
     </div>
   );
 }
-
