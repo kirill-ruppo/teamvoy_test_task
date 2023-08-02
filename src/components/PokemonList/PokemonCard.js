@@ -8,7 +8,7 @@ export default function PokemonCard({_id}) {
       .then((info) => setPokemonInfo(info))
       .catch((error) => console.error('Error fetching data:', error));
   }, [_id]);
-
+console.log(pokemonInfo)
   if (pokemonInfo === null) {
     return <h1 className='font-bold text-3xl'>Click on the Pokemon to get more info</h1>;
   }
@@ -17,9 +17,13 @@ export default function PokemonCard({_id}) {
       <div className='w-[80%] mx-auto'>
       <img src={pokemonInfo?.sprites?.front_default} alt='pokemon_banner' className='w-full'></img>
       </div>
-      <div className='text-center'>
-        <h1 className='capitalize text-2xl font-semibold mt-4'>{pokemonInfo.species?.name}</h1>
+      <div className='text-center flex justify-center'>
+        <h1 className='capitalize text-2xl font-semibold'>{pokemonInfo.species?.name}</h1>
+        <h1 className='ml-2 text-2xl'>
+          #{pokemonInfo.id < 10 ? `00${pokemonInfo.id}` : pokemonInfo.id < 100 ? `0${pokemonInfo.id}` : pokemonInfo.id}
+        </h1>
       </div>
+
 
       <div className='w-full flex items-center justify-center mt-4'>
         <table className='w-full p-3 mx-auto text-center'>
